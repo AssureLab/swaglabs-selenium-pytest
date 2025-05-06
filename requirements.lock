@@ -25,6 +25,10 @@ idna==3.10
     # via trio
 iniconfig==2.1.0
     # via pytest
+jinja2==3.1.6
+    # via pytest-html
+markupsafe==3.0.2
+    # via jinja2
 mypy-extensions==1.1.0
     # via black
 outcome==1.3.0.post0
@@ -42,7 +46,13 @@ pluggy==1.5.0
 pysocks==1.7.1
     # via urllib3
 pytest==8.3.5
+    # via pytest-html
+    # via pytest-metadata
     # via swaglabs-robotframework
+pytest-html==4.1.1
+    # via swaglabs-robotframework
+pytest-metadata==3.1.1
+    # via pytest-html
 selenium==4.32.0
     # via swaglabs-robotframework
 sniffio==1.3.1
