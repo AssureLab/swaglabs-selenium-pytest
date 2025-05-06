@@ -6,15 +6,13 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
-#   generate-hashes: false
-#   universal: false
 
 -e file:.
 attrs==25.3.0
     # via outcome
     # via trio
 black==25.1.0
-    # via swaglabs-robotframework
+    # via swaglabs-selenium-pytest
 certifi==2025.4.26
     # via selenium
 click==8.1.8
@@ -48,13 +46,13 @@ pysocks==1.7.1
 pytest==8.3.5
     # via pytest-html
     # via pytest-metadata
-    # via swaglabs-robotframework
+    # via swaglabs-selenium-pytest
 pytest-html==4.1.1
-    # via swaglabs-robotframework
+    # via swaglabs-selenium-pytest
 pytest-metadata==3.1.1
     # via pytest-html
 selenium==4.32.0
-    # via swaglabs-robotframework
+    # via swaglabs-selenium-pytest
 sniffio==1.3.1
     # via trio
 sortedcontainers==2.4.0

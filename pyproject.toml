@@ -1,5 +1,5 @@
 [project]
-name = "swaglabs-robotframework"
+name = "swaglabs-selenium-pytest"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
@@ -26,4 +26,4 @@ dev-dependencies = []
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/swaglabs_robotframework"]
+packages = ["src/swaglabs_selenium_pytest"]
