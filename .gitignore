@@ -8,5 +8,8 @@ wheels/
 
 # venv
 .venv
+
+# reports
+*.html
 reports/
 screenshots/

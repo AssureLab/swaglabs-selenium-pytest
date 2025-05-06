@@ -1,1 +1,1 @@
-# swaglabs-robotframework
+# swaglabs-selenium-pytest
