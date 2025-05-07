@@ -1,17 +1,52 @@
+import os
+import yaml
+import base64
 import pytest
 import pytest_html
-import os
-import base64
 from selenium import webdriver
+from pytest_metadata.plugin import metadata_key
+from selenium.webdriver.chrome.options import Options
 
-os.makedirs("screenshots", exist_ok=True)
 
-@pytest.fixture
-def driver():
-    driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_experimental_option(
+    "prefs",
+    {"credentials_enable_service": False, "profile.password_manager_enabled": False},
+)
+
+
+def pytest_configure(config):
+    config.stash[metadata_key]["Project"] = "swaglabs_selenium_pytest"
+
+    # Ensure the screenshots folder exists
+    os.makedirs("screenshots", exist_ok=True)
+
+
+def read_config():
+    with open("config/config.yaml") as f:
+        return yaml.safe_load(f)
+
+
+@pytest.fixture(scope="session")
+def config():
+    return read_config()
+
+
+@pytest.fixture(scope="session")
+def browser(config):
+    if config["browser"] == "chrome":
+        driver = webdriver.Chrome(options=chrome_options)
+    elif config["browser"] == "firefox":
+        driver = webdriver.Firefox()
+    elif config["browser"] == "edge":
+        driver = webdriver.Edge()
+    else:
+        raise Exception("Unsupported browser")
+    # driver.implicitly_wait(config["timeout"])
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -21,14 +56,17 @@ def pytest_runtest_makereport(item, call):
     if report.when == "call" or report.when == "setup":
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            driver= item.funcargs.get("driver", None)
+            driver = item.funcargs.get("browser", None)
             if driver:
                 ss_path = os.path.join(os.getcwd(), "screenshots", f"{item.name}.png")
                 driver.save_screenshot(ss_path)
 
                 with open(ss_path, "rb") as f:
                     encoded_image = base64.b64encode(f.read()).decode()
+
                 html_image = f'<div><img src="data:image/png;base64,{encoded_image}" alt="Screenshot" style="width: 300px;"/></div>'
                 extras.append(pytest_html.extras.html(html_image))
+
                 extras.append(pytest_html.extras.url(driver.current_url))
+
         report.extras = extras
