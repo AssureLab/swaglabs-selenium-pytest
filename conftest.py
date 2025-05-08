@@ -11,7 +11,11 @@ from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
 chrome_options.add_experimental_option(
     "prefs",
-    {"credentials_enable_service": False, "profile.password_manager_enabled": False},
+    {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False,
+    },
 )
 
 
