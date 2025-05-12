@@ -38,3 +38,14 @@ def test_locked_out_user_login(browser, config):
     login.login("locked_out_user", "secret_sauce")
 
     assert "locked out" in check_error_massage(browser)
+
+
+def test_problem_user_login(browser, config):
+    login = LoginPage(browser, config["base_url"])
+    login.load()
+    login.login("problem_user", "secret_sauce")
+    assert "inventory" in browser.current_url
+
+    img = wait_for(browser).until(EC.visibility_of_element_located((LoginPageLocators.IMG_BACKPACK)))
+    src = img.get_attribute("src")
+    assert not "sauce-backpack-1200x1500" in src, f"Unexpected src: {src}"
