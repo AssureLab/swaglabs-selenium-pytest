@@ -1,8 +1,12 @@
+from selenium.webdriver.common.by import By
+
+
 class LoginPageLocators:
-    USERNAME = "user-name"
-    PASSWORD = "password"
-    LOGIN_BUTTON = "login-button"
-    ERROR_MESSAGE = ("xpath", "//h3[@data-test='error']")
+    USERNAME = (By.ID, "user-name")
+    PASSWORD = (By.ID, "password")
+    LOGIN_BUTTON = (By.ID, "login-button")
+    ERROR_MESSAGE = (By.XPATH, "//h3[@data-test='error']")
+    IMG_BACKPACK = (By.CSS_SELECTOR, "img[data-test='inventory-item-sauce-labs-backpack-img']")
 
 
 class InventoryPageLocators:
