@@ -6,8 +6,12 @@ class LoginPageLocators:
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_MESSAGE = (By.XPATH, "//h3[@data-test='error']")
-    IMG_BACKPACK = (By.CSS_SELECTOR, "img[data-test='inventory-item-sauce-labs-backpack-img']")
+    IMG_BACKPACK = (
+        By.CSS_SELECTOR,
+        "img[data-test='inventory-item-sauce-labs-backpack-img']",
+    )
     INVENTORY_LIST = (By.CLASS_NAME, "inventory_list")
+    CART_ICON = (By.ID, "shopping_cart_container")
 
 
 class InventoryPageLocators:
