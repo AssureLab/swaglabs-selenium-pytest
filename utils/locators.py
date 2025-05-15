@@ -12,6 +12,7 @@ class LoginPageLocators:
     )
     INVENTORY_LIST = (By.CLASS_NAME, "inventory_list")
     CART_ICON = (By.ID, "shopping_cart_container")
+    BURGER_MENU = (By.XPATH, "//img[@class='bm-icon visual_failure']")
 
 
 class InventoryPageLocators:
