@@ -22,7 +22,7 @@ class InventoryPageLocators:
 
 
 class CartPageLocators:
-    CHECKOUT_BUTTON = "checkout"
+    CHECKOUT_BUTTON = (By.ID, "checkout")
 
 
 class CheckoutPageLocators:
