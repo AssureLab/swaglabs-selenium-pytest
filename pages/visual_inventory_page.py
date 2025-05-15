@@ -17,6 +17,15 @@ class InventoryPage:
         print(f"Backpack image src: {img_src}")
         check.is_in("sauce-backpack-1200x1500", img_src, "Backpack image is incorrect")
 
+    def verify_transform(self, locator, element):
+        transform = locator.value_of_css_property("transform")
+        transform = get_rotation_angle(transform)
+        check.is_in(
+            transform,
+            ["none", ""],
+            f"Unexpected transform applied {element}: {transform}degree",
+        )
+
     def verify_cart_icon_visual_position(self):
         cart = self.driver.find_element(*LoginPageLocators.CART_ICON)
 
@@ -29,8 +38,8 @@ class InventoryPage:
             "Cart right position is incorrect",
         )
 
-        transform = cart.value_of_css_property("transform")
-        transform = get_rotation_angle(transform)
-        check.is_in(
-            transform, ["none", ""], f"Unexpected transform applied: {transform}"
-        )
+        self.verify_transform(cart, "Cart Icon")
+
+    def verify_burger_menu_visual_position(self):
+        menu = self.driver.find_element(*LoginPageLocators.BURGER_MENU)
+        self.verify_transform(menu, "Berger Menu")

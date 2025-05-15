@@ -9,3 +9,4 @@ def test_visual_user_ui_validation(browser, config):
     inventory = InventoryPage(browser)
     inventory.verify_backpack_image()
     inventory.verify_cart_icon_visual_position()
+    inventory.verify_burger_menu_visual_position()
