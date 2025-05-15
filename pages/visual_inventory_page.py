@@ -43,3 +43,6 @@ class InventoryPage:
     def verify_burger_menu_visual_position(self):
         menu = self.driver.find_element(*LoginPageLocators.BURGER_MENU)
         self.verify_transform(menu, "Berger Menu")
+
+    def go_to_cart(self):
+        self.driver.find_element(*LoginPageLocators.CART_ICON).click()
