@@ -1,8 +1,8 @@
-from utils.locators import LoginPageLocators
-from utils.wait_utils import wait_for
-from selenium.webdriver.support import expected_conditions as EC
 import pytest_check as check
+from utils.wait_utils import wait_for
+from utils.locators import LoginPageLocators
 from utils.css_utils import get_rotation_angle
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class InventoryPage:
