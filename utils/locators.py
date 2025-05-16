@@ -6,6 +6,7 @@ class LoginPageLocators:
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_MESSAGE = (By.XPATH, "//h3[@data-test='error']")
+    ITEM_IMAGES = (By.XPATH, '//img[@class="inventory_item_img"]')
     IMG_BACKPACK = (
         By.CSS_SELECTOR,
         "img[data-test='inventory-item-sauce-labs-backpack-img']",

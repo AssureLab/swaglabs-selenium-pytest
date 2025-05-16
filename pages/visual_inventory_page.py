@@ -1,4 +1,5 @@
 import pytest_check as check
+from utils.image_src import ImageSrc
 from utils.wait_utils import wait_for
 from utils.locators import LoginPageLocators
 from utils.css_utils import get_rotation_angle
@@ -9,13 +10,16 @@ class InventoryPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def verify_backpack_image(self):
-        backpack_img = wait_for(self.driver).until(
-            EC.visibility_of_element_located(LoginPageLocators.IMG_BACKPACK)
-        )
-        img_src = backpack_img.get_attribute("src")
-        print(f"Backpack image src: {img_src}")
-        check.is_in("sauce-backpack-1200x1500", img_src, "Backpack image is incorrect")
+    def verify_all_product_images(self):
+        item_images = self.driver.find_elements(*LoginPageLocators.ITEM_IMAGES)
+        expected_images = (
+            ImageSrc.IMAGES.items()
+        )  # returns list of (name, expected_substring)
+
+        for item_img, (name, expected_src) in zip(item_images, expected_images):
+            img_src = item_img.get_attribute("src")
+            print(f"{name} image src: {img_src}")
+            check.is_in(expected_src, img_src, f"{name} image is incorrect: {img_src}")
 
     def verify_transform(self, locator, element):
         transform = locator.value_of_css_property("transform")
