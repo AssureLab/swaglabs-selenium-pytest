@@ -26,7 +26,7 @@ def test_problem_user_login(browser, config):
     login.check_login("problem_user", "secret_sauce")
 
     # inventory = InventoryPage(browser)
-    # inventory.verify_backpack_image()
+    # inventory.verify_all_product_images()
 
 
 def test_glitch_user_login(browser, config):
