@@ -36,18 +36,27 @@ def read_config():
 def config():
     return read_config()
 
+
 # --- Add CLI Option for browser ---
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Browser to use: chrome, firefox, edge")
+    parser.addoption(
+        "--browser",
+        action="store",
+        default="chrome",
+        help="Browser to use: chrome, firefox, edge",
+    )
 
-    parser.addoption("--headed", action="store_true", default=False, help="Run tests in headed mode")
+    parser.addoption(
+        "--headed", action="store_true", default=False, help="Run tests in headed mode"
+    )
+
 
 @pytest.fixture(scope="session")
 def browser(request):
     browser = request.config.getoption("browser").lower()
-    #headed = request.config.getoption("headed")
-    #if not headed:
-        #chrome_options.add_orgument("--headless")
+    # headed = request.config.getoption("headed")
+    # if not headed:
+    # chrome_options.add_orgument("--headless")
     if browser == "chrome":
         driver = webdriver.Chrome(options=chrome_options)
     elif browser == "firefox":
